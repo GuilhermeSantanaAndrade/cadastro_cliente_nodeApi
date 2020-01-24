@@ -1,6 +1,6 @@
 var express = require("express"),
   bodyParser = require("body-parser"),
-  db = require("./dbConnection"),
+  Db = require("./dbConnection"),
   app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,9 +18,13 @@ app.listen(3000, () => {
 });
 
 // GET
-app.get("/api/cliente/:id?", (req, res) => {
-  db().insert("teste");
-  res.status(200).json({ message: "resposta" });
+app.get("/api/cliente/:id?", async (req, res) => {
+  const database = await new Db().connect("mongodb", "cadastro_clientes");
+  try {
+    res.status(200).json({ message: "resposta" });
+  } finally {
+    database.close();
+  }
 });
 
 // POST
