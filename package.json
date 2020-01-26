@@ -2,7 +2,7 @@
   "name": "cadastro_cliente_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +18,10 @@
   "homepage": "https://github.com/GuilhermeSantanaAndrade/cadastro_cliente_nodeApi#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-multiparty": "^2.2.0",
+    "consign": "^0.1.6",
     "express": "^4.17.1",
-    "mongodb": "^3.5.2"
+    "mongodb": "^3.5.2",
+    "mysql": "^2.18.1"
   }
 }
