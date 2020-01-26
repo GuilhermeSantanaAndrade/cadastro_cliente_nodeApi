@@ -1,5 +1,9 @@
-var app = require("./index.js");
+var app = require("./config.js");
+require("dotenv").config({
+  path: ".env"
+});
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log("Servidor ON");
+const port = process.env.NODE_PORT || 3000;
+app.listen(port, () => {
+  console.log(`Servidor ON Porta(${port})`);
 });

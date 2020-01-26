@@ -1,23 +1,40 @@
-var ControllerCliente = require("../controllers/cliente");
+var ControllerCliente = require("../controllers/cliente"),
+  asyncHandler = require("express-async-handler");
 
 module.exports = app => {
   // GET
   app.get("/api/cliente/:id?", async (req, res) => {
-    ControllerCliente.consultar(req, res);
+    try {
+      await ControllerCliente.consultar(req, res);
+    } catch (err) {
+      res.status("500").json({ status: 500, message: err.message || err });
+    }
   });
 
   // POST
-  app.post("/api/cliente", (req, res) => {
-    res.status(200).json({ message: "resposta" });
+  app.post("/api/cliente", async (req, res) => {
+    try {
+      await ControllerCliente.incluir(req, res);
+    } catch (err) {
+      res.status("500").json({ status: 500, message: err.message || err });
+    }
   });
 
   // PUT
-  app.put("/api/cliente/:id", (req, res) => {
-    res.status(200).json({ message: "resposta" });
+  app.put("/api/cliente/:id", async (req, res) => {
+    try {
+      await ControllerCliente.alterar(req, res);
+    } catch (err) {
+      res.status("500").json({ status: 500, message: err.message || err });
+    }
   });
 
   // DELETE
-  app.delete("/api/cliente/:id", (req, res) => {
-    res.status(200).json({ message: "resposta" });
+  app.delete("/api/cliente/:id", async (req, res) => {
+    try {
+      await ControllerCliente.deletar(req, res);
+    } catch (err) {
+      res.status("500").json({ status: 500, message: err.message || err });
+    }
   });
 };
